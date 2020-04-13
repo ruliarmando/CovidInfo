@@ -1,5 +1,5 @@
 {
-  "name": "covid-interactive",
+  "name": "covid-inter",
   "version": "0.0.0",
   "description": "covid-19 info cli app",
   "main": "index.js",
