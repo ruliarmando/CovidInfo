@@ -1,7 +1,7 @@
 # CovidInfo
 
 ## Installation
-`npm install -g covidinfo`
+`npm install -g covid-inter`
 
 This app get data from [api.kawalcorona.com](https://kawalcorona.com/api/)
 
