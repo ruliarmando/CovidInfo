@@ -27,6 +27,6 @@
     "tty-table": "^4.1.1"
   },
   "bin": {
-    "covidinfo": "./index.js"
+    "covid-inter": "./index.js"
   }
 }
