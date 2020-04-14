@@ -11,11 +11,7 @@ const api = require('./lib/api');
 clear();
 
 // Display banner
-console.log(
-  chalk.yellow(
-    figlet.textSync('CovidInfo', { horizontalLayout: 'default' })
-  )
-);
+console.log(chalk.yellow(figlet.textSync('CovidInfo', { horizontalLayout: 'default' })));
 
 // For fetching and displaying the data
 const displayData = async (loader, label) => {
@@ -36,23 +32,21 @@ const displayData = async (loader, label) => {
 
 // Main function
 const run = async () => {
-  const globalOrCountry = await inquirer.askGlobalorCountry();
+  const { scope, country, province, nationalOrProvince } = await inquirer.askQuestions();
 
-  if (globalOrCountry.scope === 'global') {
+  if (scope === 'global') {
     displayData(api.getGlobalData, 'Data kasus corona global saat ini:');
   } else {
-    const answers = await inquirer.askWhichCountry();
-
-    if (answers.country === 'Indonesia') {
-      if (answers.nationalOrProvince === 'nasional') {
+    if (country === 'Indonesia') {
+      if (nationalOrProvince === 'nasional') {
         displayData(api.getNationalData, 'Data kasus corona nasional saat ini:');
       } else {
-        const loader = () => { return api.getProvinceData(answers.province) };
-        displayData(loader, `Data kasus corona di ${answers.province} saat ini:`);
+        const loader = () => { return api.getProvinceData(province) };
+        displayData(loader, `Data kasus corona di ${province} saat ini:`);
       }
     } else {
-      const loader = () => { return api.getCountryData(answers.country) };
-      displayData(loader, `Data kasus corona di ${answers.country} saat ini:`);
+      const loader = () => { return api.getCountryData(country) };
+      displayData(loader, `Data kasus corona di ${country} saat ini:`);
     }
   }
 };
